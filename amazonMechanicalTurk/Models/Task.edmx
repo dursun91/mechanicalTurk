@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBmechanicalTurkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JobAdditional">
+          <Key>
+            <PropertyRef Name="AdditionalJobID" />
+          </Key>
+          <Property Name="AdditionalJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="JobImage" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobData">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" />
+          <Property Name="AdditionalID" Type="int" />
+        </EntityType>
+        <EntityType Name="JobInfo">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="JobExplanation" Type="varchar(max)" />
+          <Property Name="JobActive" Type="bit" Nullable="false" />
+          <Property Name="JobCountRequired" Type="int" Nullable="false" />
+          <Property Name="JobCountDone" Type="int" />
+          <Property Name="TimeSt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solutions">
+          <Key>
+            <PropertyRef Name="SolutionsID" />
+          </Key>
+          <Property Name="SolutionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="SolutionByUserID" Type="int" Nullable="false" />
+          <Property Name="Solution" Type="varchar(max)" Nullable="false" />
+          <Property Name="TimeSt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tag" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_JD_JA">
+          <End Role="JobAdditional" Type="Self.JobAdditional" Multiplicity="0..1" />
+          <End Role="JobData" Type="Self.JobData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobAdditional">
+              <PropertyRef Name="AdditionalJobID" />
+            </Principal>
+            <Dependent Role="JobData">
+              <PropertyRef Name="AdditionalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBmechanicalTurkModelStoreContainer">
+          <EntitySet Name="JobAdditional" EntityType="Self.JobAdditional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobData" EntityType="Self.JobData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobInfo" EntityType="Self.JobInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solutions" EntityType="Self.Solutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JD_JA" Association="Self.FK_JD_JA">
+            <End Role="JobAdditional" EntitySet="JobAdditional" />
+            <End Role="JobData" EntitySet="JobData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBmechanicalTurkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="JobAdditional">
+          <Key>
+            <PropertyRef Name="AdditionalJobID" />
+          </Key>
+          <Property Name="AdditionalJobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="JobImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="JobDatas" Relationship="Self.FK_JD_JA" FromRole="JobAdditional" ToRole="JobData" />
+        </EntityType>
+        <EntityType Name="JobData">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TagID" Type="Int32" />
+          <Property Name="AdditionalID" Type="Int32" />
+          <NavigationProperty Name="JobAdditional" Relationship="Self.FK_JD_JA" FromRole="JobData" ToRole="JobAdditional" />
+        </EntityType>
+        <EntityType Name="JobInfo">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="JobExplanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JobActive" Type="Boolean" Nullable="false" />
+          <Property Name="JobCountRequired" Type="Int32" Nullable="false" />
+          <Property Name="JobCountDone" Type="Int32" />
+          <Property Name="TimeSt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Solution">
+          <Key>
+            <PropertyRef Name="SolutionsID" />
+          </Key>
+          <Property Name="SolutionsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="SolutionByUserID" Type="Int32" Nullable="false" />
+          <Property Name="Solution1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimeSt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_JD_JA">
+          <End Role="JobAdditional" Type="Self.JobAdditional" Multiplicity="0..1" />
+          <End Role="JobData" Type="Self.JobData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobAdditional">
+              <PropertyRef Name="AdditionalJobID" />
+            </Principal>
+            <Dependent Role="JobData">
+              <PropertyRef Name="AdditionalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBmechanicalTurkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JobAdditionals" EntityType="Self.JobAdditional" />
+          <EntitySet Name="JobDatas" EntityType="Self.JobData" />
+          <EntitySet Name="JobInfoes" EntityType="Self.JobInfo" />
+          <EntitySet Name="Solutions" EntityType="Self.Solution" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <AssociationSet Name="FK_JD_JA" Association="Self.FK_JD_JA">
+            <End Role="JobAdditional" EntitySet="JobAdditionals" />
+            <End Role="JobData" EntitySet="JobDatas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBmechanicalTurkModelStoreContainer" CdmEntityContainer="DBmechanicalTurkEntities">
+          <EntitySetMapping Name="JobAdditionals">
+            <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobAdditional">
+              <MappingFragment StoreEntitySet="JobAdditional">
+                <ScalarProperty Name="AdditionalJobID" ColumnName="AdditionalJobID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="JobImage" ColumnName="JobImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobDatas">
+            <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobData">
+              <MappingFragment StoreEntitySet="JobData">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="AdditionalID" ColumnName="AdditionalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobInfoes">
+            <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobInfo">
+              <MappingFragment StoreEntitySet="JobInfo">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobExplanation" ColumnName="JobExplanation" />
+                <ScalarProperty Name="JobActive" ColumnName="JobActive" />
+                <ScalarProperty Name="JobCountRequired" ColumnName="JobCountRequired" />
+                <ScalarProperty Name="JobCountDone" ColumnName="JobCountDone" />
+                <ScalarProperty Name="TimeSt" ColumnName="TimeSt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solutions">
+            <EntityTypeMapping TypeName="DBmechanicalTurkModel.Solution">
+              <MappingFragment StoreEntitySet="Solutions">
+                <ScalarProperty Name="SolutionsID" ColumnName="SolutionsID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="SolutionByUserID" ColumnName="SolutionByUserID" />
+                <ScalarProperty Name="Solution1" ColumnName="Solution" />
+                <ScalarProperty Name="TimeSt" ColumnName="TimeSt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="DBmechanicalTurkModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Tag1" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

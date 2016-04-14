@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBmechanicalTurkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="JobAdditional">
+    <Key>
+      <PropertyRef Name="AdditionalJobID" />
+    </Key>
+    <Property Name="AdditionalJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
+    <Property Name="JobImage" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobData">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TagID" Type="int" />
+    <Property Name="AdditionalID" Type="int" />
+  </EntityType>
+  <EntityType Name="JobInfo">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobDescription" Type="varchar" MaxLength="1000" />
+    <Property Name="JobExplanation" Type="varchar(max)" />
+    <Property Name="JobActive" Type="bit" Nullable="false" />
+    <Property Name="JobCountRequired" Type="int" Nullable="false" />
+    <Property Name="JobCountDone" Type="int" />
+    <Property Name="TimeSt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Solutions">
+    <Key>
+      <PropertyRef Name="SolutionsID" />
+    </Key>
+    <Property Name="SolutionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
+    <Property Name="SolutionByUserID" Type="int" Nullable="false" />
+    <Property Name="Solution" Type="varchar(max)" Nullable="false" />
+    <Property Name="TimeSt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="TagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tag" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_JD_JA">
+    <End Role="JobAdditional" Type="Self.JobAdditional" Multiplicity="0..1" />
+    <End Role="JobData" Type="Self.JobData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobAdditional">
+        <PropertyRef Name="AdditionalJobID" />
+      </Principal>
+      <Dependent Role="JobData">
+        <PropertyRef Name="AdditionalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBmechanicalTurkModelStoreContainer">
+    <EntitySet Name="JobAdditional" EntityType="Self.JobAdditional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobData" EntityType="Self.JobData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobInfo" EntityType="Self.JobInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solutions" EntityType="Self.Solutions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_JD_JA" Association="Self.FK_JD_JA">
+      <End Role="JobAdditional" EntitySet="JobAdditional" />
+      <End Role="JobData" EntitySet="JobData" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

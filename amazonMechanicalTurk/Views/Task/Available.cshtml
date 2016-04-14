@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<amazonMechanicalTurk.Models.JobInfo>
+
 @{
     ViewBag.Title = "Available";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -46,6 +47,14 @@
             <td>30</td>
             <td>$0.30</td>
         </tr>
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobDescription)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobCountRequired)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+            </tr>
+        }
     </tbody>
 </table>

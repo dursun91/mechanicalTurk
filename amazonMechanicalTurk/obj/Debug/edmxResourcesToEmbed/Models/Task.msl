@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBmechanicalTurkModelStoreContainer" CdmEntityContainer="DBmechanicalTurkEntities">
+    <EntitySetMapping Name="JobAdditionals">
+      <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobAdditional">
+        <MappingFragment StoreEntitySet="JobAdditional">
+          <ScalarProperty Name="AdditionalJobID" ColumnName="AdditionalJobID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobImage" ColumnName="JobImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobDatas">
+      <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobData">
+        <MappingFragment StoreEntitySet="JobData">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+          <ScalarProperty Name="AdditionalID" ColumnName="AdditionalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobInfoes">
+      <EntityTypeMapping TypeName="DBmechanicalTurkModel.JobInfo">
+        <MappingFragment StoreEntitySet="JobInfo">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobExplanation" ColumnName="JobExplanation" />
+          <ScalarProperty Name="JobActive" ColumnName="JobActive" />
+          <ScalarProperty Name="JobCountRequired" ColumnName="JobCountRequired" />
+          <ScalarProperty Name="JobCountDone" ColumnName="JobCountDone" />
+          <ScalarProperty Name="TimeSt" ColumnName="TimeSt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solutions">
+      <EntityTypeMapping TypeName="DBmechanicalTurkModel.Solution">
+        <MappingFragment StoreEntitySet="Solutions">
+          <ScalarProperty Name="SolutionsID" ColumnName="SolutionsID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="SolutionByUserID" ColumnName="SolutionByUserID" />
+          <ScalarProperty Name="Solution1" ColumnName="Solution" />
+          <ScalarProperty Name="TimeSt" ColumnName="TimeSt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="DBmechanicalTurkModel.Tag">
+        <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+          <ScalarProperty Name="Tag1" ColumnName="Tag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
