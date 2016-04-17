@@ -67,3 +67,8 @@ C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\bin\Microsoft.Owin.S
 C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.csprojResolveAssemblyReference.cache
 C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.dll
 C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.pdb
+C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.Migrations.InitialCreate.resources
+C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.csproj.GenerateResource.Cache
+C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.Migrations.BirthDate.resources
+C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.Migrations.FirstName.resources
+C:\Users\Ayando\Desktop\mechanicalTurk\amazonMechanicalTurk\obj\Debug\amazonMechanicalTurk.Migrations.LastName.resources
