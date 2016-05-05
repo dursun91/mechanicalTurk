@@ -1,0 +1,80 @@
+﻿@model IEnumerable<amazonMechanicalTurk.Models.JobInfo>
+
+@{
+    ViewBag.Title = "Available Jobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>description</th>
+            <th>Workers needed</th>
+            <th>Payout</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Translastion</td>
+            <td>Translate essay to english</td>
+            <td>2</td>
+            <td>$10.00</td>
+        </tr>
+        <tr>
+            <td>Translation</td>
+            <td>Translate product labels from Chinese into english </td>
+            <td>1</td>
+            <td>$5.00</td>
+        </tr>
+        <tr>
+            <td>Usability</td>
+            <td>Find support page url</td>
+            <td>20</td>
+            <td>$0.20</td>
+        </tr>
+        <tr>
+            <td>Usability</td>
+            <td>Find the url of the page describing our service</td>
+            <td>50</td>
+            <td>$0.05</td>
+        </tr>
+        <tr>
+            <td>Image Recognition</td>
+            <td>create tags that describe the image</td>
+            <td>30</td>
+            <td>$0.30</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="clickable-row">
+                <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobDescription)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobCountRequired)</td>
+                @if (item.JobTitle.Equals("Translation")) {
+                    <td>$1.50</td>
+                }
+                else{
+                    <td>$0.30</td>
+                }
+                           @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.JobID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.JobID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.JobID })
+                </td>
+            }
+            </tr>
+        }
+    </tbody>
+</table>
+

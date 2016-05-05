@@ -171,8 +171,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobInfoesController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyJobsController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\business.jpg" />
+    <Content Include="Images\crowdsourcing-spigot.jpg" />
+    <Content Include="Images\crowdsourcing-word-cloud.jpg" />
+    <Content Include="Images\location.jpg" />
+    <Content Include="Images\money_online.jpg" />
+    <Content Include="Images\tafel.jpg" />
     <Content Include="Models\Task.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Task.edmx</DependentUpon>
@@ -311,11 +319,13 @@
     <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Task\Create.cshtml" />
     <Content Include="Views\Task\Available.cshtml" />
-    <Content Include="Views\JobInfoes\Create.cshtml" />
-    <Content Include="Views\JobInfoes\Delete.cshtml" />
-    <Content Include="Views\JobInfoes\Details.cshtml" />
-    <Content Include="Views\JobInfoes\Edit.cshtml" />
-    <Content Include="Views\JobInfoes\Index.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\MyJobs\Index.cshtml" />
+    <Content Include="Views\MyJobs\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -342,6 +352,7 @@
       <DependentUpon>201604172250235_LastName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

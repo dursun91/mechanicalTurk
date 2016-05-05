@@ -48,12 +48,17 @@
             <td>$0.30</td>
         </tr>
         @foreach (var item in Model)
-        {
-            <tr>
+        { 
+            <tr class="clickable-row">
                 <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
                 <td>@Html.DisplayFor(modelItem => item.JobDescription)</td>
                 <td>@Html.DisplayFor(modelItem => item.JobCountRequired)</td>
                 <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.JobID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.JobID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.JobID })
+                </td>
             </tr>
         }
     </tbody>

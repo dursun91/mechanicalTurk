@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using amazonMechanicalTurk.Models;
 
 namespace amazonMechanicalTurk.Controllers
 {
     public class TaskController : Controller
     {
+        private DBmechanicalTurkEntities db = new DBmechanicalTurkEntities();
         // GET: Task
         public ActionResult Index()
         {
@@ -16,7 +21,7 @@ namespace amazonMechanicalTurk.Controllers
 
         public ActionResult Available()
         {
-            return View();
+            return View(db.JobInfoes.ToList());
         }
 
         // GET: Task/Details/5
@@ -33,12 +38,17 @@ namespace amazonMechanicalTurk.Controllers
 
         // POST: Task/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "JobID,JobTitle,JobDescription,JobExplanation,JobActive,JobCountRequired,JobCountDone,TimeSt")] JobInfo jobInfo)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                if (ModelState.IsValid)
+                {
+                    db.JobInfoes.Add(jobInfo);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Index");
             }
             catch

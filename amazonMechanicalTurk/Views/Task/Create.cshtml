@@ -1,23 +1,131 @@
-﻿
+﻿@model amazonMechanicalTurk.Models.JobInfo
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#usability").click(function () {
+            $("#translation").hide();
+            $("#image").hide();
+            $("#question").show();
+        });
+        $("#translations").click(function () {
+            $("#translation").show();
+            $("#image").hide();
+            $("#question").hide();
+        });
+        $("#recognition").click(function () {
+            $("#translation").hide();
+            $("#image").show();
+            $("#question").hide();
+        });
+    });
+</script>
 <h2>Create Task</h2>
 
-<div class="row">
-    <div class="col-md-2">
-        <input type="radio" name="gender" value="usability test"> usability test<br>
+<form class="row">
+    <div class="col-md-4">
+        <input type="radio" name="jobType" id="usability" value="usability test"> usability test<br>
     </div>
 
-    <div class="col-md-2">
-        <input type="radio" name="gender" value="translations"> translations<br>
+    <div class="col-md-4">
+        <input type="radio" name="jobType" id="translations" value="translations"> translations<br>
     </div>
 
-    <div class="col-md-2">
-        <input type="radio" name="gender" value="image recognition"> image recognition <br>
+    <div class="col-md-4">
+        <input type="radio" name="jobType" id="recognition" value="image recognition"> image recognition <br>
     </div>
+
+</form>
+
+<div id="question" hidden>
+    <p>
+    usability
+    </p>
+
+        <div class="form-horizontal">
+            <h4>JobInfo</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobExplanation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobExplanation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobExplanation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.JobActive)
+                        @Html.ValidationMessageFor(model => model.JobActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobCountRequired, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobCountRequired, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobCountRequired, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobCountDone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JobCountDone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobCountDone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+</div>
+
+<div id="translation" hidden>
+    <p>
+        trans
+    </p>
+</div>
+
+<div id="image" hidden>
+    <p>
+        image
+    </p>
 </div>
 
 
